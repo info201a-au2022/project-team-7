@@ -39,7 +39,7 @@ The Dataset
 Our problem domain focuses on how the mainstream media impacts the popularity of songs. We are questioning whether the number of streams can determine if music is quality or not. One of our datasets displays the top Spotify hits from 2000-2019. This dataset includes musical aspects of the song displayed in integers as well as popularity. This will help us answer what determines a good song and if the quality of music is determined by popularity. We can also draw conclusions about what genre was the most popular on average and which year generated the most popular songs. We are also using a dataset that showcases Spotify’s most unpopular songs. This is where we will pull our song recommendations for underground artists based on the listeners favorite songs. We will do this by comparing genres and analyzing how different music components such as energy, danceability, duration, etc. affect a song’s popularity. Lastly, we are using a dataset that tracks the popularity of Spotify’s top tracks by genre. This will help us determine how genre impacts the amount of streams a song gets.
 
 
-![Spotify Datasets](/C:/Users/msl4e/Documents/info201/Project/project-team-7/Images/dataset_table.PNG)
+![Spotify Datasets](file:///C:/Users/msl4e/Documents/info201/Project/project-team-7/Images/dataset_table.PNG)
 
 
 
