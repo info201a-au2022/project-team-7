@@ -1,4 +1,4 @@
-# Underground 
+# Underground
 
 ## Underground Music
 
@@ -37,6 +37,11 @@ Research Questions
 The Dataset
 
 Our problem domain focuses on how the mainstream media impacts the popularity of songs. We are questioning whether the number of streams can determine if music is quality or not. One of our datasets displays the top Spotify hits from 2000-2019. This dataset includes musical aspects of the song displayed in integers as well as popularity. This will help us answer what determines a good song and if the quality of music is determined by popularity. We can also draw conclusions about what genre was the most popular on average and which year generated the most popular songs. We are also using a dataset that showcases Spotify’s most unpopular songs. This is where we will pull our song recommendations for underground artists based on the listeners favorite songs. We will do this by comparing genres and analyzing how different music components such as energy, danceability, duration, etc. affect a song’s popularity. Lastly, we are using a dataset that tracks the popularity of Spotify’s top tracks by genre. This will help us determine how genre impacts the amount of streams a song gets.
+
+
+![Spotify Datasets](/C:/Users/msl4e/Documents/info201/Project/project-team-7/Images/dataset_table.PNG)
+
+
 
 The data collected within these datasets was collected by members of the Spotify community and updated recently to account for data up to the year 2020. This data was collected for the purpose of analyzing trends and creating visualizations which present the data showing popularity and other stats relating to Spotify’s streamed music over the years. The data collection was done by private individuals and posted through the open source dataset hub, Kaggle. Data was validated by scraping the data directly from the Spotify API, along with the use of multiple datasets in this project which can be used to validate the consistency of popularity of the data. The data was obtained through research into open source available sources of datasets relating to Spotify popularity and engagement, and it was found through Kaggle.
 
