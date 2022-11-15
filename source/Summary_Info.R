@@ -1,43 +1,39 @@
-summarise(spotify_2000_2019, energy_mean = mean(energy), danceability_median = median(danceability))
-summarise(spotify_1921_2020, energy_mean = mean(energy), danceability_median = median(danceability))
-summarise(spotify_unpopular_songs, energy_mean = mean(energy), danceability_median = median(danceability))
+library(tidyverse)
+library(dplyr)
 
-summarise(spotify_2000_2019, danceability_mean = mean(danceability), energy_median = median(energy))
-summarise(spotify_1921_2020, danceability_mean = mean(danceability), energy_median = median(energy))
-summarise(spotify_unpopular_songs, danceability_mean = mean(danceability), energy_median= median(energy))
+# Reading 3 sets of data from .csv files
 
-max_energy_1921_2020 <- max(spotify_1921_2020$energy)
+spotify_2000_2019 <- read.csv("./info201/Project/project-team-7/data/songs_normalize.csv")
+spotify_unpopular_songs <- read.csv("./info201/Project/project-team-7/data/unpopular_songs.csv")
+spotify_1921_2020 <- read.csv("./info201/Project/project-team-7/data/data.csv")
 
-min(spotify_1921_2020$energy)
-mean(spotify_1921_2020$energy)
-length(spotify_1921_2020$energy)
+# Renaming columns to match all 3 sets of data
 
-max_danceability_1921_2020 <- max(spotify_1921_2020$danceability)
+spotify_1921_2020 <- spotify_1921_2020 %>% 
+  rename("song" = "name", "artist" = "artists")
 
-min(spotify_1921_2020$danceability)
-mean(spotify_1921_2020$danceability)
-length(spotify_1921_2020$danceability)
+spotify_unpopular_songs <- spotify_unpopular_songs %>% 
+  rename("id" = "track_id", "song" = "track_name", "artist" = "track_artist")
 
-max_energy_unpopular <- max(spotify_unpopular_songs$energy)
+# Reassigning explicit columns across sets of data to equal logical values
 
-min(spotify_unpopular_songs$energy)
-mean(spotify_unpopular_songs$energy)
-length(spotify_unpopular_songs$energy)
+spotify_1921_2020$explicit <- as.logical(spotify_1921_2020$explicit)
 
-max_danceability_unpopular <- max(spotify_unpopular_songs$danceability)
+spotify_unpopular_songs$explicit <- as.logical(spotify_unpopular_songs$explicit)
 
-min(spotify_unpopular_songs$danceability)
-mean(spotify_unpopular_songs$danceability)
-length(spotify_unpopular_songs$danceability)
+# Joining all 3 sets of data into both a "popular songs" set and an "all songs" set
 
-max_energy_2000_2019 <- max(spotify_2000_2019$energy)
+popular_songs <- full_join(spotify_1921_2020, spotify_2000_2019)
+all_songs <- full_join(spotify_unpopular_songs, popular_songs)
 
-min(spotify_2000_2019$energy)
-mean(spotify_2000_2019$energy)
-length(spotify_2000_2019$energy)
+# Averaging statistics for each artist in Spotify
 
-max_danceability_2000_2019 <- max(spotify_2000_2019$danceability)
+artist_info <- all_songs %>%
+  group_by(artist) %>%
+  summarize_at(c("danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", "liveness", "valence", "tempo", "duration_ms", "popularity"), mean, na.rm = TRUE)
 
-min(spotify_2000_2019$danceability)
-mean(spotify_2000_2019$danceability)
-length(spotify_2000_2019$danceability)
+# Averaging statistics for all songs in Spotify
+
+summary_info <- all_songs %>%
+  summarize_at(c("danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", "liveness", "valence", "tempo", "duration_ms", "popularity"), mean, na.rm = TRUE)
+
