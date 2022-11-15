@@ -1,7 +1,7 @@
 ---
-title: "Your Project Title"
-author: "project team members"
-date: "1/22/2022"
+title: "Underground Music"
+author: "Maddie Lee, Josie Duong, Shane Beres"
+date: "11/14/2022"
 output: html_document
 ---
 
@@ -43,12 +43,43 @@ When you click the **Knit** button a document will be generated that includes bo
 summary(cars)
 ```
 
-## Including Plots
+## Charts
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r, echo=FALSE, include=FALSE}
+library(tidyverse)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r pressure, echo=FALSE, message=FALSE}
+library(tidyverse)
+spotify_2000_2019 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/songs_normalize.csv")
+spotify_unpopular_songs <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/unpopular_songs.csv")
+spotify_1921_2020 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/data.csv")
+
+spotify_1921_2020 <- spotify_1921_2020 %>% 
+  rename("song" = "name", "artist" = "artists")
+
+spotify_unpopular_songs <- spotify_unpopular_songs %>% 
+  rename("id" = "track_id", "explicit_T_F" = "explicit")
+
+popular_songs <- full_join(spotify_1921_2020, spotify_2000_2019)
+all_songs <- full_join(spotify_unpopular_songs, popular_songs)
+
+new_data <- all_songs %>% 
+  select(popularity, danceability) %>% 
+  group_by(popularity) %>% 
+  summarize(danceability = mean(danceability))
+
+
+popularity_danceability <- ggplot(new_data, aes(x = popularity, y = danceability)) +
+  geom_point(color = "blue") +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    x = "Popularity",
+    y = "Average Danceability",
+    title = "Popularity vs. Danceability"
+  ) 
+plot(popularity_danceability)
+```
+
+
