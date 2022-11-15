@@ -9,11 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## What is this file for?
+## Dynamic Paragraph
 
-* This file will eventually become your project report for **P02: Exploratory Data Analysis**. Specifically, you will write rmarkdown to report your exploratory data analysis.
-
-* Please see Canvas for more details.
+The data we have compiled 
 
 ## ACCESSING THE /source DIRECTORY
 ### Example 1: Source some code and run a function
@@ -50,7 +48,7 @@ summary(cars)
 library(tidyverse)
 ```
 
-```{r pressure, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE}
 library(tidyverse)
 spotify_2000_2019 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/songs_normalize.csv")
 spotify_unpopular_songs <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/unpopular_songs.csv")
@@ -81,5 +79,38 @@ popularity_danceability <- ggplot(new_data, aes(x = popularity, y = danceability
   ) 
 plot(popularity_danceability)
 ```
+
+```{r, echo=FALSE, message=FALSE}
+library(tidyverse)
+spotify_2000_2019 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/songs_normalize.csv")
+spotify_unpopular_songs <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/unpopular_songs.csv")
+spotify_1921_2020 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/data.csv")
+
+spotify_1921_2020 <- spotify_1921_2020 %>% 
+  rename("song" = "name", "artist" = "artists")
+
+spotify_unpopular_songs <- spotify_unpopular_songs %>% 
+  rename("id" = "track_id", "explicit_T_F" = "explicit")
+
+popular_songs <- full_join(spotify_1921_2020, spotify_2000_2019)
+all_songs <- full_join(spotify_unpopular_songs, popular_songs)
+
+new_data_energy <- all_songs %>% 
+  select(popularity, energy) %>% 
+  group_by(popularity) %>% 
+  summarize(energy = mean(energy))
+
+
+popularity_energy <- ggplot(new_data_energy, aes(x = popularity, y = energy)) +
+  geom_point(color = "blue") +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    x = "Popularity",
+    y = "Average Energy",
+    title = "Popularity vs. Energy"
+  ) 
+plot(popularity_energy)
+```
+
 
 
