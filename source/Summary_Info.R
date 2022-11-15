@@ -9,10 +9,10 @@ spotify_1921_2020 <- read.csv("./info201/Project/project-team-7/data/data.csv")
 
 # Renaming columns to match all 3 sets of data
 
-spotify_1921_2020 <- spotify_1921_2020 %>% 
+spotify_1921_2020 <- spotify_1921_2020 %>%
   rename("song" = "name", "artist" = "artists")
 
-spotify_unpopular_songs <- spotify_unpopular_songs %>% 
+spotify_unpopular_songs <- spotify_unpopular_songs %>%
   rename("id" = "track_id", "song" = "track_name", "artist" = "track_artist")
 
 # Reassigning explicit columns across sets of data to equal logical values
@@ -37,3 +37,43 @@ artist_info <- all_songs %>%
 summary_info <- all_songs %>%
   summarize_at(c("danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", "liveness", "valence", "tempo", "duration_ms", "popularity"), mean, na.rm = TRUE)
 
+#summary_info code
+library(dplyr)
+
+summarise(spotify_2000_2019, energy_mean = mean(energy), danceability_median = median(danceability))
+summarise(spotify_1921_2020, energy_mean = mean(energy), danceability_median = median(danceability))
+summarise(spotify_unpopular_songs, energy_mean = mean(energy), danceability_median = median(danceability))
+
+summarise(spotify_2000_2019, danceability_mean = mean(danceability), energy_median = median(energy))
+summarise(spotify_1921_2020, danceability_mean = mean(danceability), energy_median = median(energy))
+summarise(spotify_unpopular_songs, danceability_mean = mean(danceability), energy_median= median(energy))
+
+max(spotify_1921_2020$energy)
+min(spotify_1921_2020$energy)
+mean(spotify_1921_2020$energy)
+length(spotify_1921_2020$energy)
+
+max(spotify_1921_2020$danceability)
+min(spotify_1921_2020$danceability)
+mean(spotify_1921_2020$danceability)
+length(spotify_1921_2020$danceability)
+
+max(spotify_unpopular_songs$energy)
+min(spotify_unpopular_songs$energy)
+mean(spotify_unpopular_songs$energy)
+length(spotify_unpopular_songs$energy)
+
+max(spotify_unpopular_songs$danceability)
+min(spotify_unpopular_songs$danceability)
+mean(spotify_unpopular_songs$danceability)
+length(spotify_unpopular_songs$danceability)
+
+max(spotify_2000_2019$energy)
+min(spotify_2000_2019$energy)
+mean(spotify_2000_2019$energy)
+length(spotify_2000_2019$energy)
+
+max(spotify_2000_2019$danceability)
+min(spotify_2000_2019$danceability)
+mean(spotify_2000_2019$danceability)
+length(spotify_2000_2019$danceability)
