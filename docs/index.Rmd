@@ -5,13 +5,14 @@ date: "11/14/2022"
 output: html_document
 ---
 
+
 ```{r setup, include=FALSE}
+source("C:/Users/msl4e/Documents/info201/Project/project-team-7/source/Summary_Info.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 ## Dynamic Paragraph
 
-The data we have compiled 
+The data we have compiled includes the average statistics for each artist on Spotify. These statistics are as follows: `r artist_info()`. The categories we focused on were danceability, energy, key, loudness, mode, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration_ms, and popularity. Furthermore, we averaged the statistics for all songs on Spotify. The statistics we calculated were: `r summary_info`
 
 ## ACCESSING THE /source DIRECTORY
 ### Example 1: Source some code and run a function
