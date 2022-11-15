@@ -34,7 +34,7 @@ popularity_danceability <- ggplot(new_data, aes(x = popularity, y = danceability
 plot(popularity_danceability)
 
 
-#bar chart option below 
+#bar chart option 
 #popularity_danceability2 <- ggplot(data = new_data) +
   #geom_col(mapping = aes(x = popularity, y = danceability), fill = "lightgreen") +
   #scale_y_continuous(labels = scales::comma) +
