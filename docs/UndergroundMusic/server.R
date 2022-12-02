@@ -16,6 +16,15 @@ spotify_1921_2020 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-
 library(shiny)
 library(ggplot2)
 
+shinyServer(function(input, output) {
+  popular_songs <- read.csv(songs_normalize, header = TRUE, sep = ",")
+  df <- popular_songs %>% 
+    groub_by(genre) %>% 
+    summarize(popularity = mean(popularity))
+  g <- ggplot(df) +
+    geom_col(aes(y = popularity, x = genre))
+})
+
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
