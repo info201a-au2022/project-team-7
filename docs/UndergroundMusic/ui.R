@@ -13,14 +13,14 @@ shinyUI(navbarPage("Underground Music",
            tabPanel("Genre vs. Popularity",
                     h1("Comparing Genre Popularity in Spotify Top Hits and 
                        Underground Songs"),
-                    selectInput(inputId = "genre",
+                    selectInput(inputId = "sel_genre",
                                 label = "Select Genre",
                                 list("country", "Dance/Electronic", "easy listening",
-                                     "hip hop", "hip hop, Dance/Electronic", "hip hop, pop, R&B,
-                                     Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
+                                     "hip hop", "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
                                      "R&B", "rock", "pop, easy listening, jazz", "rock, classical",
                                      "rock, pop, metal, Dance/Electronic", 
-                                     "World/Traditional, Folk/Acoustic"))),
+                                     "World/Traditional, Folk/Acoustic")),
+                    plotOutput("plot")),
            tabPanel("Summary"),
            tabPanel("Report")))
 
