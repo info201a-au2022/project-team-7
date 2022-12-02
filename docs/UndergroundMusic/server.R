@@ -17,7 +17,7 @@ library(shiny)
 library(ggplot2)
 
 shinyServer(function(input, output) {
-  popular_songs <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/songs_normalize.csv")
+  popular_songs <- read.csv("../../data/songs_normalize.csv")
   data <- reactive({
     req(input$sel_genre)
     df <- popular_songs %>%
