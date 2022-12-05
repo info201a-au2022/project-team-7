@@ -8,26 +8,24 @@
 #
 
 library(shiny)
+library(ggplot2)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
+library(shiny)
 
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
+library(shiny)
+shinyUI(navbarPage("Underground Music",
+                   tabPanel("Introduction"),
+                   tabPanel("Genre vs. Popularity",
+                            h1("Comparing Genre Popularity in Spotify Top Hits and 
+                       Underground Songs"),
+                            selectInput(inputId = "sel_genre",
+                                        label = "Select Genre",
+                                        list("country", "Dance/Electronic", "easy listening",
+                                             "hip hop", "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
+                                             "R&B", "rock", "pop, easy listening, jazz", "rock, classical",
+                                             "rock, pop, metal, Dance/Electronic", 
+                                             "World/Traditional, Folk/Acoustic")),
+                            plotOutput("plot")),
+                   tabPanel("Summary"),
+                   tabPanel("Report")))
 
-    # Sidebar with a slider input for number of bins
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-            plotOutput("distPlot")
-        )
-    )
-))
