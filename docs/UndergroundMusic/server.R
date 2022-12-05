@@ -30,8 +30,13 @@ shinyServer(function(input, output) {
       filter(genre %in% input$sel_genre)
   })
   output$plot <- renderPlot({
+<<<<<<< HEAD
     ggplot(data()) +
       geom_point(mapping = aes(y = popularity, x = genre), color = "dark green") +
+=======
+      ggplot(data()) +
+        geom_point(mapping = aes(y = popularity, x = genre), color = "dark green") +
+>>>>>>> 2a63a88b853d8f3c96d3aad02af3730af9de60eb
       labs(
         title = "Spotify Top Hits Genre Popularity",
         caption = "Distribution of popularity by genre from the Spotify Top Hits data set"
@@ -39,3 +44,5 @@ shinyServer(function(input, output) {
   })
 })
 
+
+#read.csv(file = "songs_normalize.csv", header = TRUE, sep = ",")
