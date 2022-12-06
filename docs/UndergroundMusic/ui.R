@@ -11,7 +11,6 @@ library(ggplot2)
 library(shiny)
 shinyUI(navbarPage("Underground Music",
                    tabPanel("Introduction"),
-                    p()
                    tabPanel("Genre vs. Popularity",
                             h1("Comparing Genre Popularity in Spotify Top Hits and 
                        Underground Songs"),
