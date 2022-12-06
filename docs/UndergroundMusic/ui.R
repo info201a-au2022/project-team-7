@@ -9,6 +9,7 @@
 
 library(ggplot2)
 library(shiny)
+<<<<<<< HEAD
 shinyUI(navbarPage("Underground Music",
                    tabPanel("Introduction"),
                    tabPanel("Genre vs. Popularity",
@@ -24,4 +25,42 @@ shinyUI(navbarPage("Underground Music",
                             plotOutput("plot")),
                    tabPanel("Summary", verbatimTextOutput("summary")),
                    tabPanel("Report")))
+=======
+
+shinyUI(
+  navbarPage(
+    theme = "cerulean",
+    "Underground Music",
+           tabPanel("Introduction",
+                    h2("Problem Domain"),
+                    h2("Research Questions"),
+                    h2("Data Analyzed"),
+                    h2("Key Findings")),
+    
+           tabPanel("Genre vs. Top Hits Popularity",
+                    h1("Comparing Genre Popularity in Spotify Top Hits"),
+                    sidebarPanel(selectInput(inputId = "sel_genre",
+                                label = "Select Genre",
+                                list("country", "Dance/Electronic", "easy listening",
+                                     "hip hop", "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
+                                     "R&B", "rock", "pop, easy listening, jazz", "rock, classical",
+                                     "rock, pop, metal, Dance/Electronic", 
+                                     "World/Traditional, Folk/Acoustic"))),
+                    mainPanel(plotOutput("plot"))),
+    
+           tabPanel("Interactive 2"),
+    
+           tabPanel("Interactive 3"),
+    
+           tabPanel("Summary"),
+    
+           tabPanel("Report")))
+
+
+
+
+
+
+
+>>>>>>> 3ca563fc87327b2cf7d16bc05718737350b4461b
 
