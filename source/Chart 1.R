@@ -58,5 +58,38 @@ unpopular_songs_genre <- unpopular_songs_genre %>%
 joined_unpopular <- full_join(unpopular_songs_genre, spotify_unpopular_songs)
   
 write.csv(joined_unpopular, "C:/Users/msl4e/Documents/info201/Project/project-team-7/data/joined_unpopular.csv", row.names=FALSE)  
-  
+
+stuff <- spotify_2000_2019 %>% 
+  group_by(year) %>% 
+  summarize(popularity = popularity, danceability = danceability, energy = energy, loudness = loudness, 
+            instrumentalness = instrumentalness)
+function(input, output) {
+  popular_songs_factors <- read.csv("songs_normalize.csv")
+  data1 <- reactive({
+    req(input$sel_factor)
+    df1 <- popular_songs_factors %>% 
+      group_by(year) %>% 
+      summarize(popularity = popularity, 
+                danceability = danceability, 
+                energy = energy, 
+                loudness = loudness, 
+                instrumentalness = instrumentalness) %>% 
+      filter(popularity %in% input$sel_factor)
+  })
+  output$plot1 <- renderPlot({
+    ggplot(data1()) +
+      geom_line(mapping = aes(y = popularity, x = year), color = "red") +
+      labs(
+        title = "Spotify Top Hits Popularity",
+        caption = "How different factors in music influence popularity"
+      )
+  })
+}
+
+h1("Comparing Different Factors of Popularity"),
+sidebarPanel(checkboxGroupInput(inputId = "sel_factor",
+                                label = "Select Factor",
+                                list("danceability", "energy", "loudness", "instrumentalness"))),
+plotOutput("plot")
+
   
