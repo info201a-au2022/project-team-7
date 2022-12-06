@@ -9,6 +9,10 @@
 
 library(ggplot2)
 library(shiny)
+<<<<<<< HEAD
+=======
+
+>>>>>>> bd3bc1acbbfb31289a9df273a2742e5c16cd49be
 
 shinyUI(
   navbarPage(
@@ -40,7 +44,12 @@ shinyUI(
                     
                  # ),
     
-           tabPanel("Interactive 3"),
+           tabPanel("Factors of Popularity",
+                    h1("Comparing Different Factors of Popularity"),
+                    sidebarPanel(checkboxGroupInput(inputId = "sel_factor",
+                                                    label = "Select Factor",
+                                                    list("popularity", "danceability", "energy", "loudness", "instrumentalness"))),
+                    plotOutput("plot1")),
     
            tabPanel("Summary"),
     
@@ -48,3 +57,13 @@ shinyUI(
 ))
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+>>>>>>> bd3bc1acbbfb31289a9df273a2742e5c16cd49be

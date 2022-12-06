@@ -22,10 +22,13 @@
 #spotify_2000_2019 <- read.csv("/Users/josieduong/Documents/info201/Project/project-team-7/data/songs_normalize.csv")
 #spotify_unpopular_songs <- read.csv("/Users/josieduong/Documents/info201/Project/project-team-7/data/unpopular_songs.csv")
 #spotify_1921_2020 <- read.csv("/Users/josieduong/Documents/info201/Project/project-team-7/data/data.csv")
+<<<<<<< HEAD
+=======
+
+>>>>>>> bd3bc1acbbfb31289a9df273a2742e5c16cd49be
 library(shiny)
 library(ggplot2)
 library(dplyr)
-
 
 shinyServer(function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
@@ -45,8 +48,35 @@ shinyServer(function(input, output) {
       )
   })
 })
+<<<<<<< HEAD
 #shinyServer(function(input, output) {
 #  popular_songs <- read.csv("songs_normalize.csv")
 #})
+=======
+function(input, output) {
+  popular_songs_factors <- read.csv("songs_normalize.csv")
+  data1 <- reactive({
+    req(input$sel_factor)
+    df1 <- popular_songs_factors %>% 
+      group_by(year) %>% 
+      summarize(popularity = popularity, 
+                danceability = danceability, 
+                energy = energy, 
+                loudness = loudness, 
+                instrumentalness = instrumentalness) %>% 
+      filter(sel_factor %in% input$sel_factor)
+  })
+  output$plot1 <- renderPlot({
+    ggplot(data1()) +
+      geom_line(mapping = aes(y = input$sel_factor, x = year), color = "red") +
+      labs(
+        title = "Spotify Top Hits Popularity",
+        caption = "How different factors in music influence popularity"
+      )
+  })
+}
+
+
+>>>>>>> bd3bc1acbbfb31289a9df273a2742e5c16cd49be
 
 
