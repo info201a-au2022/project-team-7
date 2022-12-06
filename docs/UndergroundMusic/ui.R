@@ -7,7 +7,9 @@
 #    http://shiny.rstudio.com/
 #
 
+library(ggplot2)
 library(shiny)
+
 shinyUI(
   navbarPage(
     theme = "cerulean",

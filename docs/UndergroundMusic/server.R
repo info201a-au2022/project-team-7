@@ -13,9 +13,12 @@
 #spotify_2000_2019 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/songs_normalize.csv")
 #spotify_unpopular_songs <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/unpopular_songs.csv")
 #spotify_1921_2020 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/data.csv")
+
+
 library(shiny)
 library(ggplot2)
 library(dplyr)
+
 
 shinyServer(function(input, output) {
   popular_songs <- read.csv("../../data/songs_normalize.csv")
@@ -27,8 +30,8 @@ shinyServer(function(input, output) {
       filter(genre %in% input$sel_genre)
   })
   output$plot <- renderPlot({
-      ggplot(data()) +
-        geom_point(mapping = aes(y = popularity, x = genre), color = "dark green") +
+    ggplot(data()) +
+      geom_point(mapping = aes(y = popularity, x = genre), color = "dark green") +
       labs(
         title = "Spotify Top Hits Genre Popularity",
         caption = "Distribution of popularity by genre from the Spotify Top Hits data set"
