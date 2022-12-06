@@ -14,12 +14,7 @@ shinyUI(
   navbarPage(
     theme = "cerulean",
     "Underground Music",
-           tabPanel("Introduction",
-                    h2("Problem Domain"),
-                    h2("Research Questions"),
-                    h2("Data Analyzed"),
-                    h2("Key Findings")),
-    
+           tabPanel("Introduction"),
            tabPanel("Genre vs. Top Hits Popularity",
                     h1("Comparing Genre Popularity in Spotify Top Hits"),
                     sidebarPanel(selectInput(inputId = "sel_genre",
@@ -30,13 +25,7 @@ shinyUI(
                                      "rock, pop, metal, Dance/Electronic", 
                                      "World/Traditional, Folk/Acoustic"))),
                     mainPanel(plotOutput("plot"))),
-    
-           tabPanel("Interactive 2"),
-    
-           tabPanel("Interactive 3"),
-    
            tabPanel("Summary"),
-    
            tabPanel("Report")))
 
 

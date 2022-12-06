@@ -21,7 +21,7 @@ library(dplyr)
 
 
 shinyServer(function(input, output) {
-  popular_songs <- read.csv("songs_normalize.csv")
+  popular_songs <- read.csv("../data/songs_normalize.csv")
   data <- reactive({
     req(input$sel_genre)
     df <- popular_songs %>%

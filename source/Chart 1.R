@@ -7,6 +7,7 @@ spotify_unpopular_songs <- read.csv("C:/Users/msl4e/Documents/info201/Project/pr
 spotify_1921_2020 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/data.csv")
 
 library(dplyr)
+library(ggplot2)
 
 spotify_1921_2020 <- spotify_1921_2020 %>% 
   rename("song" = "name", "artist" = "artists")
@@ -35,16 +36,27 @@ plot(popularity_danceability)
 
 
 #bar chart option 
-#popularity_danceability2 <- ggplot(data = new_data) +
-  #geom_col(mapping = aes(x = popularity, y = danceability), fill = "lightgreen") +
-  #scale_y_continuous(labels = scales::comma) +
-  #labs(
-    #x = "Popularity",
-    #y = "Average Danceability",
-    #title = "Popularity vs. Danceability"
-  #) 
-#plot(popularity_danceability2)
+popularity_danceability2 <- ggplot(data = new_data) +
+  geom_col(mapping = aes(x = popularity, y = danceability), fill = "lightgreen") +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    x = "Popularity",
+    y = "Average Danceability",
+    title = "Popularity vs. Danceability"
+  ) 
+plot(popularity_danceability2)
 
 
+genres <- spotify_2000_2019 %>%
+  group_by(genre) %>% 
+  summarize(popularity = sum(popularity))
 
+unpopular_songs_genre <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/z_genre_of_artists.csv")
 
+unpopular_songs_genre <- unpopular_songs_genre %>% 
+  rename("track_artist" = "artist_name")
+joined_unpopular <- full_join(unpopular_songs_genre, spotify_unpopular_songs)
+  
+write.csv(joined_unpopular, "C:/Users/msl4e/Documents/info201/Project/project-team-7/data/joined_unpopular.csv", row.names=FALSE)  
+  
+  
