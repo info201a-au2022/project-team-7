@@ -9,33 +9,19 @@
 
 library(ggplot2)
 library(shiny)
-<<<<<<< HEAD
-shinyUI(navbarPage("Underground Music",
-                   tabPanel("Introduction"),
-                   tabPanel("Genre vs. Popularity",
-                            h1("Comparing Genre Popularity in Spotify Top Hits and 
-                       Underground Songs"),
-                            selectInput(inputId = "sel_genre",
-                                        label = "Select Genre",
-                                        list("country", "Dance/Electronic", "easy listening",
-                                             "hip hop", "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
-                                             "R&B", "rock", "pop, easy listening, jazz", "rock, classical",
-                                             "rock, pop, metal, Dance/Electronic", 
-                                             "World/Traditional, Folk/Acoustic")),
-                            plotOutput("plot")),
-                   tabPanel("Summary", verbatimTextOutput("summary")),
-                   tabPanel("Report")))
-=======
 
 shinyUI(
   navbarPage(
     theme = "cerulean",
     "Underground Music",
-           tabPanel("Introduction",
-                    h2("Problem Domain"),
-                    h2("Research Questions"),
-                    h2("Data Analyzed"),
-                    h2("Key Findings")),
+           tabPanel("Overview",
+                    h3("Introduction"),
+                    p("Our project Underground Music will generate an underground music artist based off of popular songs from mainstream artists that the user chooses. We chose Spotify to gather data from, because we believe it’s  one of the biggest music streaming platforms, which will give us the 
+                    most accurate data to work with. We want to be able to give exposure to smaller artists who don’t have the resources or privilege to break out into the industry. Spotify, which began in 2008, is now the world’s leading audio streaming service, with 433 million users, 
+                      including 188 million premium subscribers spread across 183 regions (Ruby, D. 2022). Our project will include large datasets with thousands of songs within the 2000s, including the most popular songs as well as less known songs. The user will choose three to five songs they like the most, which will then generate an artist with less than 100,000 monthly listeners that match the genre or is most similar to the selection of songs."),
+                    h3("Research Questions"),
+                    h3("Data Analyzed"),
+                    h3("Key Findings")),
     
            tabPanel("Genre vs. Top Hits Popularity",
                     h1("Comparing Genre Popularity in Spotify Top Hits"),
@@ -48,19 +34,17 @@ shinyUI(
                                      "World/Traditional, Folk/Acoustic"))),
                     mainPanel(plotOutput("plot"))),
     
-           tabPanel("Interactive 2"),
+           tabPanel("Genre vs Danceability",
+                  h1("Comparing Genre Danceability in Poplar and Unpopular Spotify Data "),
+                 # sidebarPanel(selectInput())
+                    
+                 # ),
     
            tabPanel("Interactive 3"),
     
            tabPanel("Summary"),
     
-           tabPanel("Report")))
+           tabPanel("Report"))
+))
 
-
-
-
-
-
-
->>>>>>> 3ca563fc87327b2cf7d16bc05718737350b4461b
 
