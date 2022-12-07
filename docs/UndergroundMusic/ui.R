@@ -10,18 +10,33 @@
 library(ggplot2)
 library(shiny)
 
-shinyUI(
+shinyUI(fluidPage(
   navbarPage(
     theme = "cerulean",
     "Underground Music",
            tabPanel("Overview",
                     h3("Introduction"),
-                    p("Our project Underground Music will be using spotify music data from a few datasets to generate different interactive graphs to juxtapose different aspects of the datasets.
-                      We'll be comparing catagories such as popularity, danceability, and genre. We want to pull from our datasets to see how objectivlely unpopular music compares to popular songs 
-                      as well as what factors make a song popular. We chose Spotify to gather data from, because we believe it’s  one of the biggest music streaming platforms, which will give us the most accurate data to work with."),
-                    h3("Research Questions"),
-                    h3("Data Analyzed"),
-                    h3("Key Findings")),
+                    p("Our project will explore what makes a song popular. We chose Spotify to gather data from, because 
+                      we believe it’s  one of the biggest music streaming platforms, which will 
+                      give us the most accurate data to work with. We want to find the trends within the 
+                      data to determine statistically what makes a quality song, and if there is any relationship
+                      at all. Spotify, which began in 2008, is now the world’s leading audio streaming 
+                      service, with 433 million users, including 188 million premium subscribers 
+                      spread across 183 regions (Ruby, D. 2022). Our project will include large 
+                      datasets with thousands of songs within the 2000s, including the most popular 
+                      songs as well as less known songs."),
+                    h3("Research questions"),
+                    p("1. Is good music determined by the amount of streams? This question is important because the main point of 
+                    our project is to give exposure and recognition to lesser known artists and to essentially debunk this question.
+                    The motivation behind this question would be to disprove it in a sense."),
+                    p("2. How does genre impact the amount of streams a song gets? We’ve noticed from our own personal experience that 
+                    certain genres are more popular than others, especially since we are college students and that’s our demographic. We 
+                    want to see the contrast of how big the gap of popularity is between genres."),
+                    p("3. What year generated the most popular songs? Trends in music change throughout time, so it is important to note
+                    these trends when thinking about the criteria for a good song. Songs that were popular years ago will not be the most 
+                    popular songs today. We want to find the pattern of these changes and know what years generated the most popular songs.")
+
+                     )),
     
            tabPanel("Genre vs Top Hits Popularity",
                     h1("Comparing Genre Popularity in Spotify Top Hits"),
@@ -33,24 +48,14 @@ shinyUI(
                     mainPanel(plotOutput("plot"))),
 
           tabPanel("Popularity vs Year",
-          h1("Comparing Popularity of Songs Based on Year Published"),
+                 h1("Comparing Popularity of Songs Based on Year Published"),
                   sidebarPanel(sliderInput(inputId = "sel_year",
-                                           label = "Select Year",
+                                          label = "Select Year",
                                            min = "1921",
                                            max = "2020",
-                                           value = "1921")),
-                  plotOutput("plot2")),
-    
-#           tabPanel("Popularity vs Danceability",
-#                  h1("Comparing Genre Danceability in Poplar and Unpopular Spotify Data "),
-#                  sidebarPanel(sliderInput(inputId = "sel_year",
-#                                           label = "Select Year",
-#                                           min = "1921",
-#                                           max = "2020",
-#                                           value = "1921")),
-#                  plotOutput("plot2")),
-
-
+                                          value = "1921")),
+                 mainPanel(plotOutput("plot2"))),
+  
            tabPanel("Factors of Popularity",
                     h1("Comparing Different Factors of Popularity"),
                     sidebarPanel(selectInput(inputId = "sel_genre1",
@@ -78,8 +83,14 @@ shinyUI(
                                                   "R&B", "rock"))),
                    mainPanel(plotOutput("plot5"))
                    ),
-    
-           tabPanel("Summary"),
+           tabPanel("Summary",
+                    p("Is good music based off of popularity? What factors affect the popularity and listenability
+                      of a song? Our project **UnderGround music** allows the user to navigate through different
+                      interactive graphs to see how the data diverges. Through this project we will explore Spotify data sets that help us 
+                      see the correlation between popularity, genre, and other aspects of music. We use a couple datasets that track the 
+                      different categories of a widerange of songs on Spotify - such as; popularity, danceability, energy, loudness, and 
+                      instrumentalness. We chose to source our music data from Spotify users because because we believe it’s shown statistically
+                      to be one of the biggest music streaming platforms, which will give us the most accurate data to work with. ")),
     
            tabPanel("Report",
                     h3("Code Name"),

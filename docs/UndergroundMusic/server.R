@@ -14,7 +14,7 @@
 #spotify_unpopular_songs <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/unpopular_songs.csv")
 #spotify_1921_2020 <- read.csv("C:/Users/msl4e/Documents/info201/Project/project-team-7/data/data.csv")
 
-# Define server logic required to draw a histogram
+
 #spotify_2000_2019 <- songs_normalize
 #spotify_unpopular_songs <- unpopular_songs
 #spotify_1921_2020 <- data
@@ -30,6 +30,7 @@ library(dplyr)
 server <- function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
   all_songs <- read.csv("data.csv")
+  
   data <- reactive({
     req(input$sel_genre) 
     df <- popular_songs %>%
@@ -44,19 +45,17 @@ server <- function(input, output) {
       group_by(year) %>% 
       summarize(popularity = popularity, genre = genre, danceability = danceability,
                 energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
-<<<<<<< HEAD
-      filter(genre %in% input$sel_genre1)})
-  # graph 2 slider graph
+       filter(genre %in% input$sel_genre1)})
+  
+# graph 2 slider graph
   data3 <- reactive({
-    req(input$sel_year)
-    df3 <- all_songs %>% 
-      group_by(year) %>% 
-      summarize()
+  req(input$sel_year)
+  df3 <-all_songs %>% 
+  group_by(year) %>% 
+  summarize(popularity = popularity, year = year) %>% 
+  filter(year %in% input$sel_year)
   })
   
-=======
-      filter(genre %in% input$sel_genre1)
-    })
   data2 <- reactive({
     req(input$sel_genre2)
     df2 <- popular_songs %>% 
@@ -81,7 +80,7 @@ server <- function(input, output) {
                 energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
       filter(genre %in% input$sel_genre4)
   })
->>>>>>> 4a7af0e21aae6d8c7fe2675fbb0f575fdfead440
+
   output$plot <- renderPlot({
     ggplot(data()) +
       geom_col(mapping = aes(y = popularity, x = year), fill = "dark green") +
@@ -91,12 +90,13 @@ server <- function(input, output) {
       )
   })
   output$plot2 <- renderPlot({
-    ggplot(data3, aes(y = danceability, x = Year, color = group)) + 
+    ggplot(data3()) +
+    geom_histogram(mapping = aes(y = danceability, x = Year), color = "pink", fill = "white", bandwidth = 0.5, bins = 2020) + 
     labs(
      title = "Spotify Top Hits and Widerange Set of Spotify Songs",
-    caption = "Comparing the dancability and popularity "
-  )
-})
+    caption = "Comparing the dancability and popularity"
+    )
+ })
   output$plot1 <- renderPlot({
     ggplot(data1()) +
       geom_point(mapping = aes(y = danceability, x = year), color = "red", size = 2.5) +
@@ -129,25 +129,7 @@ server <- function(input, output) {
         caption = "How instrumentalness influences popularity"
       )
   })
-<<<<<<< HEAD
-})
-  
-=======
+
 }
->>>>>>> 4a7af0e21aae6d8c7fe2675fbb0f575fdfead440
-  
-
-
-
-#   output$plot2 <- renderPlot({
-#    ggplot(all_songs, aes(y = danceability, x = Year, color = group)) + 
-#      geom_histogram(color = 1, alpha = 0.75,
-#                     position = "identity") +
-#      scale_fill_manual(values = c("#8795E8", "#FF6AD5"))
-#   })
-
-
-
-
 
 
