@@ -29,14 +29,14 @@ library(dplyr)
 
 server <- function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
-  all_songs <- read.csv("data.csv")
   data <- reactive({
     req(input$sel_genre) 
     df <- popular_songs %>%
       group_by(year) %>% 
       summarize(popularity = popularity, genre = genre, danceability = danceability,
                 energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
-      filter(genre %in% input$sel_genre)})
+      filter(genre %in% input$sel_genre)
+    })
   data1 <- reactive({
     req(input$sel_genre1)
     df1 <- popular_songs %>%
@@ -44,7 +44,23 @@ server <- function(input, output) {
       summarize(popularity = popularity, genre = genre, danceability = danceability,
                 energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
       filter(genre %in% input$sel_genre1)
- })
+    })
+  data2 <- reactive({
+    req(input$sel_genre2)
+    df2 <- popular_songs %>% 
+      group_by(year) %>% 
+      summarize(popularity = popularity, genre = genre, danceability = danceability,
+                energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
+      filter(genre %in% input$sel_genre2)
+  })
+  data4 <- reactive({
+    req(input$sel_genre3)
+    df4 <- popular_songs %>% 
+      group_by(year) %>% 
+      summarize(popularity = popularity, genre = genre, danceability = danceability,
+                energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
+      filter(genre %in% input$sel_genre3)
+  })
   output$plot <- renderPlot({
     ggplot(data()) +
       geom_col(mapping = aes(y = popularity, x = year), fill = "dark green") +
@@ -59,24 +75,35 @@ server <- function(input, output) {
       geom_point(mapping = aes(y = danceability, x = year), color = "red") +
       labs(
         title = "Spotify Top Hits Danceability",
-        caption = "How different factors in music influence popularity"
+        caption = "How danceability influences popularity"
       )
   })
-  
-  output$plot2 <- renderPlot({
-    ggplot(all_songs, aes(y = danceability, x = Year, color = group)) + 
-      geom_histogram(color = 1, alpha = 0.75,
-                     position = "identity") +
-      scale_fill_manual(values = c("#8795E8", "#FF6AD5"))
-    })
+  output$plot3 <- renderPlot({
+    ggplot(data2()) +
+      geom_point(mapping = aes(y = energy, x = year), color = "blue") +
+      labs(
+        title = "Spotify Top Hits Energy",
+        caption = "How energy influences popularity"
+      )
+  })
+  output$plot4 <- renderPlot({
+    ggplot(data4()) +
+      geom_point(mapping = aes(y = loudness, x = year), color = "purple") +
+      labs(
+        title = "Spotify Top Hits Loudness",
+        caption = "How loudness influences popularity"
+        )
+  })
 }
   
 
 
-
-
-
-
+#   output$plot2 <- renderPlot({
+#    ggplot(all_songs, aes(y = danceability, x = Year, color = group)) + 
+#      geom_histogram(color = 1, alpha = 0.75,
+#                     position = "identity") +
+#      scale_fill_manual(values = c("#8795E8", "#FF6AD5"))
+#   })
 
 
 
