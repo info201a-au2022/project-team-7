@@ -36,13 +36,15 @@ server <- function(input, output) {
       group_by(year) %>% 
       summarize(popularity = popularity, genre = genre, danceability = danceability,
                 energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
-      filter(genre %in% input$sel_genre)})
+      filter(genre %in% input$sel_genre)
+    })
   data1 <- reactive({
     req(input$sel_genre1)
     df1 <- popular_songs %>%
       group_by(year) %>% 
       summarize(popularity = popularity, genre = genre, danceability = danceability,
                 energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
+<<<<<<< HEAD
       filter(genre %in% input$sel_genre1)})
   # graph 2 slider graph
   data3 <- reactive({
@@ -52,6 +54,34 @@ server <- function(input, output) {
       summarize()
   })
   
+=======
+      filter(genre %in% input$sel_genre1)
+    })
+  data2 <- reactive({
+    req(input$sel_genre2)
+    df2 <- popular_songs %>% 
+      group_by(year) %>% 
+      summarize(popularity = popularity, genre = genre, danceability = danceability,
+                energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
+      filter(genre %in% input$sel_genre2)
+  })
+  data4 <- reactive({
+    req(input$sel_genre3)
+    df4 <- popular_songs %>% 
+      group_by(year) %>% 
+      summarize(popularity = popularity, genre = genre, danceability = danceability,
+                energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
+      filter(genre %in% input$sel_genre3)
+  })
+  data5 <- reactive ({
+    req(input$sel_genre4)
+    df5 <- popular_songs %>% 
+      group_by(year) %>% 
+      summarize(popularity = popularity, genre = genre, danceability = danceability,
+                energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
+      filter(genre %in% input$sel_genre4)
+  })
+>>>>>>> 4a7af0e21aae6d8c7fe2675fbb0f575fdfead440
   output$plot <- renderPlot({
     ggplot(data()) +
       geom_col(mapping = aes(y = popularity, x = year), fill = "dark green") +
@@ -69,15 +99,55 @@ server <- function(input, output) {
 })
   output$plot1 <- renderPlot({
     ggplot(data1()) +
-      geom_point(mapping = aes(y = danceability, x = year), color = "red") +
+      geom_point(mapping = aes(y = danceability, x = year), color = "red", size = 2.5) +
       labs(
         title = "Spotify Top Hits Danceability",
-        caption = "How different factors in music influence popularity"
+        caption = "How danceability influences popularity"
       )
   })
+  output$plot3 <- renderPlot({
+    ggplot(data2()) +
+      geom_point(mapping = aes(y = energy, x = year), color = "blue", size = 2.5) +
+      labs(
+        title = "Spotify Top Hits Energy",
+        caption = "How energy influences popularity"
+      )
+  })
+  output$plot4 <- renderPlot({
+    ggplot(data4()) +
+      geom_point(mapping = aes(y = loudness, x = year), color = "purple", size = 2.5) +
+      labs(
+        title = "Spotify Top Hits Loudness",
+        caption = "How loudness influences popularity"
+        )
+  })
+  output$plot5 <- renderPlot({
+    ggplot(data5()) +
+      geom_point(mapping = aes(y = instrumentalness, x = year), color = "dark green", size = 2.5) +
+      labs(
+        title = "Spotify Top Hits Instrumentalness",
+        caption = "How instrumentalness influences popularity"
+      )
+  })
+<<<<<<< HEAD
 })
   
+=======
+}
+>>>>>>> 4a7af0e21aae6d8c7fe2675fbb0f575fdfead440
   
+
+
+
+#   output$plot2 <- renderPlot({
+#    ggplot(all_songs, aes(y = danceability, x = Year, color = group)) + 
+#      geom_histogram(color = 1, alpha = 0.75,
+#                     position = "identity") +
+#      scale_fill_manual(values = c("#8795E8", "#FF6AD5"))
+#   })
+
+
+
 
 
 
