@@ -60,7 +60,14 @@ shinyUI(
                                             list("country", "Dance/Electronic","hip hop", 
                                                  "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
                                                  "R&B", "rock"))),
-                   mainPanel(plotOutput("plot4"))),
+                   mainPanel(plotOutput("plot4")),
+                   sidebarPanel(selectInput(inputId = "sel_genre4",
+                                             label = "Select Genre",
+                                             list("country", "Dance/Electronic","hip hop", 
+                                                  "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
+                                                  "R&B", "rock"))),
+                   mainPanel(plotOutput("plot5"))
+                   ),
     
            tabPanel("Summary"),
     

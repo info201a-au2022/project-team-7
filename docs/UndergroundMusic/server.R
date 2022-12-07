@@ -61,6 +61,14 @@ server <- function(input, output) {
                 energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
       filter(genre %in% input$sel_genre3)
   })
+  data5 <- reactive ({
+    req(input$sel_genre4)
+    df5 <- popular_songs %>% 
+      group_by(year) %>% 
+      summarize(popularity = popularity, genre = genre, danceability = danceability,
+                energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
+      filter(genre %in% input$sel_genre4)
+  })
   output$plot <- renderPlot({
     ggplot(data()) +
       geom_col(mapping = aes(y = popularity, x = year), fill = "dark green") +
@@ -72,7 +80,7 @@ server <- function(input, output) {
 
   output$plot1 <- renderPlot({
     ggplot(data1()) +
-      geom_point(mapping = aes(y = danceability, x = year), color = "red") +
+      geom_point(mapping = aes(y = danceability, x = year), color = "red", size = 2.5) +
       labs(
         title = "Spotify Top Hits Danceability",
         caption = "How danceability influences popularity"
@@ -80,7 +88,7 @@ server <- function(input, output) {
   })
   output$plot3 <- renderPlot({
     ggplot(data2()) +
-      geom_point(mapping = aes(y = energy, x = year), color = "blue") +
+      geom_point(mapping = aes(y = energy, x = year), color = "blue", size = 2.5) +
       labs(
         title = "Spotify Top Hits Energy",
         caption = "How energy influences popularity"
@@ -88,11 +96,19 @@ server <- function(input, output) {
   })
   output$plot4 <- renderPlot({
     ggplot(data4()) +
-      geom_point(mapping = aes(y = loudness, x = year), color = "purple") +
+      geom_point(mapping = aes(y = loudness, x = year), color = "purple", size = 2.5) +
       labs(
         title = "Spotify Top Hits Loudness",
         caption = "How loudness influences popularity"
         )
+  })
+  output$plot5 <- renderPlot({
+    ggplot(data5()) +
+      geom_point(mapping = aes(y = instrumentalness, x = year), color = "dark green", size = 2.5) +
+      labs(
+        title = "Spotify Top Hits Instrumentalness",
+        caption = "How instrumentalness influences popularity"
+      )
   })
 }
   
