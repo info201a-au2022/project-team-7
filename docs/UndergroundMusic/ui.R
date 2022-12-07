@@ -16,9 +16,9 @@ shinyUI(
     "Underground Music",
            tabPanel("Overview",
                     h3("Introduction"),
-                    p("Our project Underground Music will generate an underground music artist based off of popular songs from mainstream artists that the user chooses. We chose Spotify to gather data from, because we believe it’s  one of the biggest music streaming platforms, which will give us the 
-                    most accurate data to work with. We want to be able to give exposure to smaller artists who don’t have the resources or privilege to break out into the industry. Spotify, which began in 2008, is now the world’s leading audio streaming service, with 433 million users, 
-                      including 188 million premium subscribers spread across 183 regions. Our project will include large datasets with thousands of songs within the 2000s, including the most popular songs as well as less known songs. The user will choose three to five songs they like the most, which will then generate an artist with less than 100,000 monthly listeners that match the genre or is most similar to the selection of songs."),
+                    p("Our project Underground Music will be using spotify music data from a few datasets to generate different interactive graphs to juxtapose different aspects of the datasets.
+                      We'll be comparing catagories such as popularity, danceability, and genre. We want to pull from our datasets to see how objectivlely unpopular music compares to popular songs 
+                      as well as what factors make a song popular. We chose Spotify to gather data from, because we believe it’s  one of the biggest music streaming platforms, which will give us the most accurate data to work with."),
                     h3("Research Questions"),
                     h3("Data Analyzed"),
                     h3("Key Findings")),

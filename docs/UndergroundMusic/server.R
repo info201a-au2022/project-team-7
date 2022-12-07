@@ -29,6 +29,7 @@ library(dplyr)
 
 shinyServer(function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
+  all_songs <- read.csv("data.csv")
   data <- reactive({
     req(input$sel_genre)
     df <- popular_songs %>%
@@ -44,34 +45,15 @@ shinyServer(function(input, output) {
         caption = "Distribution of popularity by genre from the Spotify Top Hits data set"
       )
   })
-})
 
 
-function(input, output) {
-  data1 <- reactive({
-    req(input$sel_factor)
-    df1 <- popular_songs_factors %>% 
-      group_by(year) %>% 
-      summarize(popularity = popularity, 
-                danceability = danceability, 
-                energy = energy, 
-                loudness = loudness, 
-                instrumentalness = instrumentalness) %>% 
-      filter(sel_factor %in% input$sel_factor)
-  })
-  output$plot1 <- renderPlot({
-    ggplot(data1()) +
-      geom_line(mapping = aes(y = input$sel_factor, x = year), color = "red") +
-      labs(
-        title = "Spotify Top Hits Popularity",
-        caption = "How different factors in music influence popularity"
-      )
-  })
   output$plot2 <- renderPlot({
-    ggplot(data1())  
-    geom_histogram()
+    ggplot(all_songs, aes(y = danceability, x = Year, color = group)) + 
+      geom_histogram(color = 1, alpha = 0.75,
+                     position = "identity") +
+      scale_fill_manual(values = c("#8795E8", "#FF6AD5"))
     })
-}
+})
 
 
 
