@@ -29,6 +29,7 @@ library(dplyr)
 
 server <- function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
+ # all_songs <- read.csv("data.csv")
   data <- reactive({
     req(input$sel_genre) 
     df <- popular_songs %>%
@@ -78,6 +79,13 @@ server <- function(input, output) {
       )
   })
 
+ # output$plot2 <- renderPlot({
+  #  ggplot(all_songs, aes(y = danceability, x = Year, color = group)) + 
+   # labs(
+  #    title = "Spotify Top Hits and Widerange Set of Spotify Songs",
+    #  caption = "Comparing the dancability and popularity "
+ # )
+#})
   output$plot1 <- renderPlot({
     ggplot(data1()) +
       geom_point(mapping = aes(y = danceability, x = year), color = "red", size = 2.5) +
@@ -112,6 +120,7 @@ server <- function(input, output) {
   })
 }
   
+
 
 
 #   output$plot2 <- renderPlot({

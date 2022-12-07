@@ -23,7 +23,7 @@ shinyUI(
                     h3("Data Analyzed"),
                     h3("Key Findings")),
     
-           tabPanel("Genre vs. Top Hits Popularity",
+           tabPanel("Genre vs Top Hits Popularity",
                     h1("Comparing Genre Popularity in Spotify Top Hits"),
                     sidebarPanel(selectInput(inputId = "sel_genre",
                                 label = "Select Genre",
@@ -40,6 +40,7 @@ shinyUI(
 #                                           max = "2020",
 #                                           value = "1921")),
 #                  plotOutput("plot2")),
+
    
            tabPanel("Factors of Popularity",
                     h1("Comparing Different Factors of Popularity"),
