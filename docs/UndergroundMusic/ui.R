@@ -72,6 +72,37 @@ shinyUI(
     
            tabPanel("Summary"),
     
-           tabPanel("Report"))
+           tabPanel("Report",
+                    h3("Code Name"),
+                    p("Underground"),
+                    h3("Project Title"),
+                    p("Spotify Data Analysis"),
+                    h3("Authors"),
+                    p("Maddie Lee and Josie Duong"),
+                    h3("Affiliation"),
+                    p("INFO-201: Technical Foundations of Informatics - The Information School - University of Washington "),
+                    h3("Date"),
+                    p("Autumn 2022"),
+                    h3("Abstract"),
+                    p("Our main question for this project is, 
+                      “Does popularity determine good music?”. We wonder what factors influence as song's
+                      popularity. Through this project we will explore Spotify data sets that help us 
+                      see the correlation between popularity, genre, and other aspects of music. We want
+                      to find out what makes a song popular and if popularity is truly an indicator of
+                      good music."),
+                    h3("Keywords"),
+                    p("Taste, exposure, genre, trends"),
+                    h3("Introduction"),
+                    p("Our project will explore what makes a song popular. We chose Spotify to gather data from, because 
+                      we believe it’s  one of the biggest music streaming platforms, which will 
+                      give us the most accurate data to work with. We want to find the trends within the 
+                      data to determine statistically what makes a quality song, and if there is any relationship
+                      at all. Spotify, which began in 2008, is now the world’s leading audio streaming 
+                      service, with 433 million users, including 188 million premium subscribers 
+                      spread across 183 regions (Ruby, D. 2022). Our project will include large 
+                      datasets with thousands of songs within the 2000s, including the most popular 
+                      songs as well as less known songs."), 
+                    h3("Problem Domain"),
+                    p("words")))
 )
 
