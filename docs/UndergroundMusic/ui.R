@@ -36,7 +36,7 @@ shinyUI(fluidPage(
                     these trends when thinking about the criteria for a good song. Songs that were popular years ago will not be the most 
                     popular songs today. We want to find the pattern of these changes and know what years generated the most popular songs.")
 
-                     )),
+                     ),
     
            tabPanel("Genre vs Top Hits Popularity",
                     h1("Comparing Genre Popularity in Spotify Top Hits"),
@@ -47,14 +47,14 @@ shinyUI(fluidPage(
                                      "R&B", "rock"))),
                     mainPanel(plotOutput("plot"))),
 
-          tabPanel("Popularity vs Year",
-                 h1("Comparing Popularity of Songs Based on Year Published"),
-                  sidebarPanel(sliderInput(inputId = "sel_year",
-                                          label = "Select Year",
-                                           min = "1921",
-                                           max = "2020",
-                                          value = "1921")),
-                 mainPanel(plotOutput("plot2"))),
+#          tabPanel("Popularity vs Year",
+#                 h1("Comparing Popularity of Songs Based on Year Published"),
+ #                 sidebarPanel(sliderInput(inputId = "sel_year",
+#                                          label = "Select Year",
+ #                                          min = "1921",
+#                                           max = "2020",
+#                                          value = "1921")),
+ #                mainPanel(plotOutput("plot2"))),
   
            tabPanel("Factors of Popularity",
                     h1("Comparing Different Factors of Popularity"),
@@ -81,11 +81,11 @@ shinyUI(fluidPage(
                                              list("country", "Dance/Electronic","hip hop", 
                                                   "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
                                                   "R&B", "rock"))),
-                   mainPanel(plotOutput("plot5"))
-                   ),
+                   mainPanel(plotOutput("plot5"))),
            tabPanel("Summary",
+                    h3("Summary"),
                     p("Is good music based off of popularity? What factors affect the popularity and listenability
-                      of a song? Our project **UnderGround music** allows the user to navigate through different
+                      of a song? Our project UnderGround music allows the user to navigate through different
                       interactive graphs to see how the data diverges. Through this project we will explore Spotify data sets that help us 
                       see the correlation between popularity, genre, and other aspects of music. We use a couple datasets that track the 
                       different categories of a widerange of songs on Spotify - such as; popularity, danceability, energy, loudness, and 
@@ -123,6 +123,23 @@ shinyUI(fluidPage(
                       datasets with thousands of songs within the 2000s, including the most popular 
                       songs as well as less known songs."), 
                     h3("Problem Domain"),
-                    p("words")))
-)
+                    p("In a world where society is always under the influence of the media and trends, it can be hard for 
+                      smaller artists to get the exposure they deserve for their music. It has been found that 78.4% of 
+                      artists on Spotify have less than 50 monthly listeners (Music Business Worldwide, 2022). This means 
+                      that over half of the artists on Spotify are barely getting any consistent listens, while mainstream 
+                      artists continue to rack up millions of listeners each month. It’s difficult to start a music career 
+                      without any resources or platforms. Sometimes talent alone isn’t enough to become successful in the music
+                      industry. Through our project, underground artists become indirect stakeholders that can benefit from our 
+                      direct stakeholders: the listeners. Other indirect stakeholders include streaming providers and record labels.
+                      Underground artists may get more exposure through our project, causing streams on apps like Spotify or Apple Music 
+                      to increase. This increase in streams may cause them to catch the attention of record labels who can help boost their 
+                      platform and increase their chances of a successful career. Record labels are known to easily get your songs on the radio, 
+                      set up interviews, and generate a fanbase. They have the connections to get your songs in the mainstream media (Kevin, 2019).
+                      The benefits of this project mostly affect underground artists. These benefits include helping talented musicians expand their 
+                      careers, demonstrating that streams do not determine the quality of a song, and helping break through the barriers of certain 
+                      trends that limit our minds to certain genres or artists. Another benefit includes the money underground artists could make through exposure. 
+                      It is estimated that artists earn an average of $0.01 per stream (McEvoy 2022). This means that artists need to have millions of streams to 
+                      make a living change. Through this project, streaming platforms may also feel the need to change their recommendation algorithms, in order 
+                      to make sure that underground artists are able to get streams. ")))
 
+))

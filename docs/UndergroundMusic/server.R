@@ -29,7 +29,7 @@ library(dplyr)
 
 server <- function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
-  all_songs <- read.csv("data.csv")
+#  all_songs <- read.csv("data.csv")
   
   data <- reactive({
     req(input$sel_genre) 
@@ -48,13 +48,13 @@ server <- function(input, output) {
        filter(genre %in% input$sel_genre1)})
   
 # graph 2 slider graph
-  data3 <- reactive({
-  req(input$sel_year)
-  df3 <-all_songs %>% 
-  group_by(year) %>% 
-  summarize(popularity = popularity, year = year) %>% 
-  filter(year %in% input$sel_year)
-  })
+ # data3 <- reactive({
+ # req(input$sel_year)
+ # df3 <-all_songs %>% 
+ # group_by(year) %>% 
+ # summarize(popularity = popularity, year = year) %>% 
+ # filter(year %in% input$sel_year)
+ # })
   
   data2 <- reactive({
     req(input$sel_genre2)
