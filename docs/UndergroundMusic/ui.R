@@ -10,16 +10,18 @@
 library(ggplot2)
 library(shiny)
 
-
 shinyUI(
   navbarPage(
     theme = "cerulean",
     "Underground Music",
-           tabPanel("Introduction",
-                    h2("Problem Domain"),
-                    h2("Research Questions"),
-                    h2("Data Analyzed"),
-                    h2("Key Findings")),
+           tabPanel("Overview",
+                    h3("Introduction"),
+                    p("Our project Underground Music will be using spotify music data from a few datasets to generate different interactive graphs to juxtapose different aspects of the datasets.
+                      We'll be comparing catagories such as popularity, danceability, and genre. We want to pull from our datasets to see how objectivlely unpopular music compares to popular songs 
+                      as well as what factors make a song popular. We chose Spotify to gather data from, because we believe it’s  one of the biggest music streaming platforms, which will give us the most accurate data to work with."),
+                    h3("Research Questions"),
+                    h3("Data Analyzed"),
+                    h3("Key Findings")),
     
            tabPanel("Genre vs. Top Hits Popularity",
                     h1("Comparing Genre Popularity in Spotify Top Hits"),
@@ -30,8 +32,15 @@ shinyUI(
                                      "R&B", "rock"))),
                     mainPanel(plotOutput("plot"))),
     
-           tabPanel("Interactive 2"),
-    
+           tabPanel("Populairty vs Danceability",
+                  h1("Comparing Genre Danceability in Poplar and Unpopular Spotify Data "),
+                  sidebarPanel(sliderInput(inputId = "sel_year",
+                                           label = "Select Year",
+                                           min = "1921",
+                                           max = "2020",
+                                           value = "1921")),
+                  plotOutput("plot2")),
+   
            tabPanel("Factors of Popularity",
                     h1("Comparing Different Factors of Popularity"),
                     sidebarPanel(selectInput(inputId = "sel_genre1",
@@ -43,13 +52,6 @@ shinyUI(
     
            tabPanel("Summary"),
     
-           tabPanel("Report")))
-
-
-
-
-
-
-
-
+           tabPanel("Report"))
+)
 

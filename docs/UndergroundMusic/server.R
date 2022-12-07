@@ -29,6 +29,7 @@ library(dplyr)
 
 server <- function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
+  all_songs <- read.csv("data.csv")
   data <- reactive({
     req(input$sel_genre) 
     df <- popular_songs %>%
@@ -52,6 +53,7 @@ server <- function(input, output) {
         caption = "Distribution of popularity by genre from the Spotify Top Hits data set"
       )
   })
+
   output$plot1 <- renderPlot({
     ggplot(data1()) +
       geom_point(mapping = aes(y = danceability, x = year), color = "red") +
@@ -60,8 +62,19 @@ server <- function(input, output) {
         caption = "How different factors in music influence popularity"
       )
   })
+  
+  output$plot2 <- renderPlot({
+    ggplot(all_songs, aes(y = danceability, x = Year, color = group)) + 
+      geom_histogram(color = 1, alpha = 0.75,
+                     position = "identity") +
+      scale_fill_manual(values = c("#8795E8", "#FF6AD5"))
+    })
 }
   
+
+
+
+
 
 
 
