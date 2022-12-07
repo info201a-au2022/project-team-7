@@ -27,46 +27,45 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 
-shinyServer(function(input, output) {
+server <- function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
   data <- reactive({
-    req(input$sel_genre)
+    req(input$sel_genre) 
     df <- popular_songs %>%
-      group_by(genre) %>% 
-      summarize(popularity = popularity) %>% 
-      filter(genre %in% input$sel_genre)
-  })
+      group_by(year) %>% 
+      summarize(popularity = popularity, genre = genre, danceability = danceability,
+                energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
+      filter(genre %in% input$sel_genre)})
+  data1 <- reactive({
+    req(input$sel_genre1)
+    df1 <- popular_songs %>%
+      group_by(year) %>% 
+      summarize(popularity = popularity, genre = genre, danceability = danceability,
+                energy = energy, loudness = loudness, instrumentalness = instrumentalness) %>% 
+      filter(genre %in% input$sel_genre1)
+ })
   output$plot <- renderPlot({
     ggplot(data()) +
-      geom_point(mapping = aes(y = popularity, x = genre), color = "dark green") +
+      geom_col(mapping = aes(y = popularity, x = year), fill = "dark green") +
       labs(
         title = "Spotify Top Hits Genre Popularity",
         caption = "Distribution of popularity by genre from the Spotify Top Hits data set"
       )
   })
-})
-function(input, output) {
-  popular_songs_factors <- read.csv("songs_normalize.csv")
-  data1 <- reactive({
-    req(input$sel_factor)
-    df1 <- popular_songs_factors %>% 
-      group_by(year) %>% 
-      summarize(popularity = popularity, 
-                danceability = danceability, 
-                energy = energy, 
-                loudness = loudness, 
-                instrumentalness = instrumentalness) %>% 
-      filter(sel_factor %in% input$sel_factor)
-  })
   output$plot1 <- renderPlot({
     ggplot(data1()) +
-      geom_line(mapping = aes(y = input$sel_factor, x = year), color = "red") +
+      geom_point(mapping = aes(y = danceability, x = year), color = "red") +
       labs(
-        title = "Spotify Top Hits Popularity",
+        title = "Spotify Top Hits Danceability",
         caption = "How different factors in music influence popularity"
       )
   })
 }
+  
+
+
+
+
 
 
 
