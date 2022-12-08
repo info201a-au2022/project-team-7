@@ -27,6 +27,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(plotly)
+library(tidyr)
 
 server <- function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
@@ -150,9 +151,9 @@ server <- function(input, output) {
               energy = mean(energy, na.rm = TRUE),
               acousticness = mean(acousticness, na.rm = TRUE),
               liveness = mean(liveness, na.rm = TRUE)) %>%
-    distinct(year, popularity, genre, .keep_all = TRUE) %>%
+    distinct(year, popularity, genre, .keep_all = TRUE) %>% 
     filter(grepl(input$SelectedGenre, genre)) %>%
-    filter(grepl(input$SelectedYear, year))
+    filter(grepl(input$SelectedYear, year)) 
     return(df6)
   })
   
