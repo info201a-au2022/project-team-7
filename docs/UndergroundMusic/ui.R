@@ -85,6 +85,7 @@ shinyUI(fluidPage(
                                              list("country", "Dance/Electronic","hip hop", 
                                                   "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
                                                   "R&B", "rock"))),
+<<<<<<< HEAD
                             mainPanel(plotOutput("plot5")),
                    p("These graphs who the comparison between genre and loudness, energy, danceability, and instrumentalness.
                      There are four different choice select boxes with 4 graphs to indicate each of these categories.")
@@ -103,6 +104,27 @@ shinyUI(fluidPage(
  #                   mainPanel(plotlyOutput("plot6"))),
                     
 
+=======
+
+                   mainPanel(plotOutput("plot5")),
+                   p("These graphs illustrate how different factors of music change over time. The factors
+                     we are comparing are danceability, energy, loudness, and instrumentalness. Users can
+                     look for patterns in these graphs and compare them to the popularity graph to see what
+                     makes a popular song.")),
+
+           tabPanel("Popularity by Genre and Year",
+                    h1("Popularity vs. Danceability, Energy, Acousticness, and Liveness by Genre and Year"),
+                    sidebarPanel(varSelectInput(
+                      "SelectedGenre",
+                      label = "Selected Genre",
+                      genre_list,
+                      multiple = FALSE),
+                                 selectInput(inputId = "SelectedYear",
+                                             label = "Selected Year",
+                                             list("2005", "2006", "2007", "2008", "2009", "2010", "2012", "2013"))),
+                    mainPanel(plotOutput("plot6"))),
+                    
+>>>>>>> 318b1481f372ddf01165c58344c486de9dc497d6
            tabPanel("Summary",
                     h3("Summary"),
                     p("Is good music based off of popularity? What factors affect the popularity and listenability
@@ -237,6 +259,7 @@ shinyUI(fluidPage(
                       - Ingham, Tim. “How Many Artists Are Generating $50k+ a Year on Spotify? Over 13,000.” Music Business Worldwide, 18 Mar. 2021, https://www.musicbusinessworldwide.com/how-many-artists-are-generating-more-than-50k-a-year-on-spotify-over-13000/. 
                       - McEvoy, Clovis. “Unlabelled: Do You Really Need a Record Label to Succeed in 2022?” MusicTech, https://musictech.com/features/opinion-analysis/unlabelled-do-you-really-need-a-record-label-to-succeed-in-2022/. 
                       - Kevin. “Why You Need a Major Label to Be a Successful Music Artist.” Mella Music, 3 June 2019, https://mellamusic.com/why-you-need-a-major-label-to-be-a-successful-music-artist/."
+<<<<<<< HEAD
                       ))
 )))
 
@@ -247,6 +270,10 @@ shinyUI(fluidPage(
 
 
 
+=======
+                      )))
+))
+>>>>>>> 318b1481f372ddf01165c58344c486de9dc497d6
 
 
 

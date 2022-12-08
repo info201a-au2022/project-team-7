@@ -27,6 +27,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(plotly)
+library(tidyr)
 
 popular_songs <- read.csv("songs_normalize.csv")
 
@@ -145,6 +146,7 @@ server <- function(input, output) {
 #    spread(key = genre, value = avg_popularity) %>%
 #    head(0)
   
+<<<<<<< HEAD
 #  data6 <- reactive({
 #    df6 <- popular_songs %>%
 #    select(year, genre, popularity, danceability, energy, acousticness, liveness) %>%
@@ -162,6 +164,25 @@ server <- function(input, output) {
 #    filter(grepl(input$SelectedYear, year))
 #    return(df6)
 #  })
+=======
+  data6 <- reactive({
+    df6 <- popular_songs %>%
+    select(year, genre, popularity, danceability, energy, acousticness, liveness) %>%
+    mutate(across(popularity, round, 1)) %>%
+    arrange(popularity) %>%
+    group_by(popularity) %>%
+    group_by(year, .add = TRUE) %>%
+    summarize(year = year, popularity = popularity, genre = genre,
+              danceability = mean(danceability, na.rm = TRUE),
+              energy = mean(energy, na.rm = TRUE),
+              acousticness = mean(acousticness, na.rm = TRUE),
+              liveness = mean(liveness, na.rm = TRUE)) %>%
+    distinct(year, popularity, genre, .keep_all = TRUE) %>% 
+    filter(grepl(input$SelectedGenre, genre)) %>%
+    filter(grepl(input$SelectedYear, year)) 
+    return(df6)
+  })
+>>>>>>> 318b1481f372ddf01165c58344c486de9dc497d6
   
 #  output$plot6 <- renderPlotly({
 #    p <- plot_ly(data = data6(), x = ~popularity, y = ~danceability, name = 'Danceability', type = 'scatter') %>%
