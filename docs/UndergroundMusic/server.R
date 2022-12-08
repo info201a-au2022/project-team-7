@@ -26,6 +26,7 @@
 library(shiny)
 library(ggplot2)
 library(dplyr)
+library(plotly)
 
 server <- function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
@@ -48,13 +49,13 @@ server <- function(input, output) {
        filter(genre %in% input$sel_genre1)})
   
 # graph 2 slider graph
-  data3 <- reactive({
-  req(input$sel_year)
-  df3 <- all_songs %>% 
-  group_by(year) %>% 
-  filter(year %in% input$sel_year) %>% 
-  summarize(popularity = popularity, year = year) 
-  })
+#  data3 <- reactive({
+#  req(input$sel_year)
+#  df3 <- all_songs %>% 
+#  group_by(year) %>% 
+#  filter(year %in% input$sel_year) %>% 
+#  summarize(popularity = popularity, year = year) 
+#  })
   
   data2 <- reactive({
     req(input$sel_genre2)
@@ -89,15 +90,15 @@ server <- function(input, output) {
         caption = "Distribution of popularity by genre from the Spotify Top Hits data set"
       )
   })
-  #doesnt work
-  output$plot2 <- renderPlot({
-    ggplot(data3()) +
-    geom_histogram(mapping = aes(y = danceability, x = Year), color = "pink", fill = "white", bandwidth = 0.5, bins = 2020) + 
-    labs(
-     title = "Year published vs Popularity of a Song",
-    caption = "Comparing Year and popularity"
-    )
- })
+
+#  output$plot2 <- renderPlot({
+#    ggplot(data3()) +
+ #   geom_histogram(mapping = aes(y = danceability, x = Year), color = "pink", fill = "white", bandwidth = 0.5, bins = 2020) + 
+#    labs(
+ #    title = "Year published vs Popularity of a Song",
+ #   caption = "Comparing Year and popularity"
+ #   )
+# })
   output$plot1 <- renderPlot({
     ggplot(data1()) +
       geom_point(mapping = aes(y = danceability, x = year), color = "red", size = 2.5) +
@@ -130,6 +131,43 @@ server <- function(input, output) {
         caption = "How instrumentalness influences popularity"
       )
   })
+  
+  genre_list <- popular_songs %>%
+    select(genre, popularity) %>%
+    group_by(genre) %>%
+    summarize(avg_popularity = mean(popularity, na.rm = TRUE)) %>%
+    spread(key = genre, value = avg_popularity) %>%
+    head(0)
+  
+  data6 <- reactive({
+    df6 <- popular_songs %>%
+    select(year, genre, popularity, danceability, energy, acousticness, liveness) %>%
+    mutate(across(popularity, round, 1)) %>%
+    arrange(popularity) %>%
+    group_by(popularity) %>%
+    group_by(year, .add = TRUE) %>%
+    summarize(year = year, popularity = popularity, genre = genre,
+              danceability = mean(danceability, na.rm = TRUE),
+              energy = mean(energy, na.rm = TRUE),
+              acousticness = mean(acousticness, na.rm = TRUE),
+              liveness = mean(liveness, na.rm = TRUE)) %>%
+    distinct(year, popularity, genre, .keep_all = TRUE) %>%
+    filter(grepl(input$SelectedGenre, genre)) %>%
+    filter(grepl(input$SelectedYear, year))
+    return(df6)
+  })
+  
+  output$plot6 <- renderPlotly({
+    p <- plot_ly(data = data6(), x = ~popularity, y = ~danceability, name = 'Danceability', type = 'scatter') %>%
+      layout(title = list(text = '<b>Popularity by Genre and Year</b>', font = list(size = 16)),
+             xaxis = list(range=c(0,100)), yaxis = list(range=c(0,1)),
+             xaxis = list(title = '<b>Popularity</b> (0-100)'), 
+             yaxis = list(title = '<b>Popularity Criteria Rating</b> (0-1)'),
+             legend = list(title=list(text='<b>Popularity Criteria</b>')))
+    p <- p %>% add_trace(y = ~energy, name = 'Energy')
+    p <- p %>% add_trace(y = ~acousticness, name = 'Acousticness')
+    p <- p %>% add_trace(y = ~liveness, name = 'Liveness')
+})
 
 }
 
