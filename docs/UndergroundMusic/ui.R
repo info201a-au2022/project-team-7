@@ -97,7 +97,7 @@ shinyUI(fluidPage(
                     sidebarPanel(varSelectInput(
                       "SelectedGenre",
                       label = "Selected Genre",
-                      list("genre_list"),
+                      genre_list,
                       multiple = FALSE),
                                  selectInput(inputId = "SelectedYear",
                                              label = "Selected Year",
@@ -239,7 +239,7 @@ shinyUI(fluidPage(
                       - McEvoy, Clovis. “Unlabelled: Do You Really Need a Record Label to Succeed in 2022?” MusicTech, https://musictech.com/features/opinion-analysis/unlabelled-do-you-really-need-a-record-label-to-succeed-in-2022/. 
                       - Kevin. “Why You Need a Major Label to Be a Successful Music Artist.” Mella Music, 3 June 2019, https://mellamusic.com/why-you-need-a-major-label-to-be-a-successful-music-artist/."
                       )))
-)
+))
 
 
 
