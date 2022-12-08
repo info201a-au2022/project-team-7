@@ -45,7 +45,7 @@ shinyUI(fluidPage(
                                 list("country", "Dance/Electronic","hip hop", 
                                      "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
                                      "R&B", "rock"))),
-                    mainPanel(plotOutput("plot")),
+                        mainPanel(plotOutput("plot")),
                     p("The purpose of this chart is to illustrate genre popularity throughout time.
                       This way the user can compare how genre popularity has increased, decreased, or
                       stayed constant. The graph illustrates what genres were popular at certain time.")),
@@ -58,6 +58,7 @@ shinyUI(fluidPage(
 #                                           max = "2020",
 #                                          value = "1921")),
  #                mainPanel(plotOutput("plot2"))),
+
   
            tabPanel("Factors of Popularity",
                     h1("Comparing Different Factors of Popularity"),
@@ -238,6 +239,7 @@ shinyUI(fluidPage(
                       - McEvoy, Clovis. “Unlabelled: Do You Really Need a Record Label to Succeed in 2022?” MusicTech, https://musictech.com/features/opinion-analysis/unlabelled-do-you-really-need-a-record-label-to-succeed-in-2022/. 
                       - Kevin. “Why You Need a Major Label to Be a Successful Music Artist.” Mella Music, 3 June 2019, https://mellamusic.com/why-you-need-a-major-label-to-be-a-successful-music-artist/."
                       )))
+)
 
-))
+
 

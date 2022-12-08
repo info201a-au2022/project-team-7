@@ -31,7 +31,7 @@ library(tidyr)
 
 server <- function(input, output) {
   popular_songs <- read.csv("songs_normalize.csv")
-#  all_songs <- read.csv("data.csv")
+  all_songs <- read.csv("data.csv")
   
   data <- reactive({
     req(input$sel_genre) 
@@ -50,13 +50,13 @@ server <- function(input, output) {
        filter(genre %in% input$sel_genre1)})
   
 # graph 2 slider graph
- # data3 <- reactive({
- # req(input$sel_year)
- # df3 <-all_songs %>% 
- # group_by(year) %>% 
- # summarize(popularity = popularity, year = year) %>% 
- # filter(year %in% input$sel_year)
- # })
+#  data3 <- reactive({
+#  req(input$sel_year)
+#  df3 <- all_songs %>% 
+#  group_by(year) %>% 
+#  filter(year %in% input$sel_year) %>% 
+#  summarize(popularity = popularity, year = year) 
+#  })
   
   data2 <- reactive({
     req(input$sel_genre2)
@@ -91,14 +91,15 @@ server <- function(input, output) {
         caption = "Distribution of popularity by genre from the Spotify Top Hits data set"
       )
   })
-  output$plot2 <- renderPlot({
-    ggplot(data3()) +
-    geom_histogram(mapping = aes(y = danceability, x = Year), color = "pink", fill = "white", bandwidth = 0.5, bins = 2020) + 
-    labs(
-     title = "Spotify Top Hits and Widerange Set of Spotify Songs",
-    caption = "Comparing the dancability and popularity"
-    )
- })
+
+#  output$plot2 <- renderPlot({
+#    ggplot(data3()) +
+ #   geom_histogram(mapping = aes(y = danceability, x = Year), color = "pink", fill = "white", bandwidth = 0.5, bins = 2020) + 
+#    labs(
+ #    title = "Year published vs Popularity of a Song",
+ #   caption = "Comparing Year and popularity"
+ #   )
+# })
   output$plot1 <- renderPlot({
     ggplot(data1()) +
       geom_point(mapping = aes(y = danceability, x = year), color = "red", size = 2.5) +
