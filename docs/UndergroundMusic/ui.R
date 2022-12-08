@@ -35,7 +35,6 @@ shinyUI(fluidPage(
                     p("3. What year generated the most popular songs? Trends in music change throughout time, so it is important to note
                     these trends when thinking about the criteria for a good song. Songs that were popular years ago will not be the most 
                     popular songs today. We want to find the pattern of these changes and know what years generated the most popular songs.")
-
                      ),
     
            tabPanel("Genre vs Top Hits Popularity",
@@ -49,17 +48,18 @@ shinyUI(fluidPage(
                     p("The purpose of this chart is to illustrate genre popularity throughout time.
                       This way the user can compare how genre popularity has increased, decreased, or
                       stayed constant. The graph illustrates what genres were popular at certain time.")),
+    
+          tabPanel("Popular Songs vs Liveness and Tempo",
+                   h1("Comparing 50 Most Popular Songs Based on Factors"),
+                   sidebarPanel(selectInput(inputId = "sel_title",
+                                            label = "Select Song",
+                                            choices = df3_short$song, multiple = TRUE)),
+                    mainPanel(plotOutput("plot2")),
+                   p("The purpose of this chart is to allow the user to choose multiple songs from the
+                     top 50 songs in our dataset to compare based on tempo and liveness. The graph illustrates
+                     on a scatterplot which songs are higher in these categories. ")
+                   ),
 
-#          tabPanel("Popularity vs Year",
-#                 h1("Comparing Popularity of Songs Based on Year Published"),
- #                 sidebarPanel(sliderInput(inputId = "sel_year",
-#                                          label = "Select Year",
- #                                          min = "1921",
-#                                           max = "2020",
-#                                          value = "1921")),
- #                mainPanel(plotOutput("plot2"))),
-
-  
            tabPanel("Factors of Popularity",
                     h1("Comparing Different Factors of Popularity"),
                     sidebarPanel(selectInput(inputId = "sel_genre1",
@@ -85,30 +85,24 @@ shinyUI(fluidPage(
                                              list("country", "Dance/Electronic","hip hop", 
                                                   "hip hop, Dance/Electronic", "hip hop, R&B", "latin", "metal", "pop",
                                                   "R&B", "rock"))),
-
-                   mainPanel(plotOutput("plot5"))
+                            mainPanel(plotOutput("plot5")),
+                   p("These graphs who the comparison between genre and loudness, energy, danceability, and instrumentalness.
+                     There are four different choice select boxes with 4 graphs to indicate each of these categories.")
                    ),
-
-           tabPanel("Popularity by Genre and Year",
-                    h1("Popularity vs. Danceability, Energy, Acousticness, and Liveness by Genre and Year"),
-                    sidebarPanel(varSelectInput(
-                      "SelectedGenre",
-                      label = "Selected Genre",
-                      genre_list,
-                      multiple = FALSE),
-                                 selectInput(inputId = "SelectedYear",
-                                             label = "Selected Year",
-                                             list("2005", "2006", "2007", "2008", "2009", "2010", "2012", "2013"))),
-                    mainPanel(plotlyOutput("plot6"))),
+ 
+#           tabPanel("Popularity by Genre and Year",
+#                   h1("Popularity vs. Danceability, Energy, Acousticness, and Liveness by Genre and Year"),
+#                   sidebarPanel(varSelectInput(
+#                      "SelectedGenre",
+#                      label = "Selected Genre",
+ #                     genre_list,
+ #                     multiple = FALSE),
+ #                                selectInput(inputId = "SelectedYear",
+#                                            label = "Selected Year",
+ #                                            list("2005", "2006", "2007", "2008", "2009", "2010", "2012", "2013"))),
+ #                   mainPanel(plotlyOutput("plot6"))),
                     
 
-           tabPanel("Summary"),
-
-                   mainPanel(plotOutput("plot5")),
-                   p("These graphs illustrate how different factors of music change over time. The factors
-                     we are comparing are danceability, energy, loudness, and instrumentalness. Users can
-                     look for patterns in these graphs and compare them to the popularity graph to see what
-                     makes a popular song.")),
            tabPanel("Summary",
                     h3("Summary"),
                     p("Is good music based off of popularity? What factors affect the popularity and listenability
@@ -243,8 +237,8 @@ shinyUI(fluidPage(
                       - Ingham, Tim. “How Many Artists Are Generating $50k+ a Year on Spotify? Over 13,000.” Music Business Worldwide, 18 Mar. 2021, https://www.musicbusinessworldwide.com/how-many-artists-are-generating-more-than-50k-a-year-on-spotify-over-13000/. 
                       - McEvoy, Clovis. “Unlabelled: Do You Really Need a Record Label to Succeed in 2022?” MusicTech, https://musictech.com/features/opinion-analysis/unlabelled-do-you-really-need-a-record-label-to-succeed-in-2022/. 
                       - Kevin. “Why You Need a Major Label to Be a Successful Music Artist.” Mella Music, 3 June 2019, https://mellamusic.com/why-you-need-a-major-label-to-be-a-successful-music-artist/."
-                      )))
-)
+                      ))
+)))
 
 
 
