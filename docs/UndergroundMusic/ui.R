@@ -69,7 +69,20 @@ shinyUI(
                                                   "R&B", "rock"))),
                    mainPanel(plotOutput("plot5"))
                    ),
-    
+
+           tabPanel("Popularity by Genre and Year",
+                    h1("Popularity vs. Danceability, Energy, Acousticness, and Liveness by Genre and Year"),
+                    sidebarPanel(varSelectInput(
+                      "SelectedGenre",
+                      label = "Selected Genre",
+                      genre_list,
+                      multiple = FALSE),
+                                 selectInput(inputId = "SelectedYear",
+                                             label = "Selected Year",
+                                             list("2005", "2006", "2007", "2008", "2009", "2010", "2012", "2013"))),
+                    mainPanel(plotlyOutput("plot6"))),
+                    
+
            tabPanel("Summary"),
     
            tabPanel("Report",
